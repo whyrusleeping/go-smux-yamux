@@ -6,6 +6,14 @@
   "gx": {
     "dvcsimport": "github.com/whyrusleeping/go-smux-yamux"
   },
+  "gxDependencies": [
+    {
+      "author": "whyrusleeping",
+      "hash": "QmT8nkh6VVJ2fWgAshstDkDWssAY1EXBhoraqGDfGeVx9Q",
+      "name": "yamux",
+      "version": "0.0.0"
+    }
+  ],
   "gxVersion": "0.7.0",
   "language": "go",
   "license": "",
