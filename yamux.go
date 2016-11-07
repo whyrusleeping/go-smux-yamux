@@ -10,6 +10,7 @@ import (
 )
 
 // stream implements smux.Stream using a ss.Stream
+// TODO: do we actually need a wrapper here?
 type stream yamux.Stream
 
 func (s *stream) yamuxStream() *yamux.Stream {
@@ -26,6 +27,18 @@ func (s *stream) Write(buf []byte) (int, error) {
 
 func (s *stream) Close() error {
 	return s.yamuxStream().Close()
+}
+
+func (s *stream) SetDeadline(t time.Time) error {
+	return s.yamuxStream().SetDeadline(t)
+}
+
+func (s *stream) SetReadDeadline(t time.Time) error {
+	return s.yamuxStream().SetReadDeadline(t)
+}
+
+func (s *stream) SetWriteDeadline(t time.Time) error {
+	return s.yamuxStream().SetWriteDeadline(t)
 }
 
 // Conn is a connection to a remote peer.

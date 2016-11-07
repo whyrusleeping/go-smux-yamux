@@ -9,15 +9,15 @@
   "gxDependencies": [
     {
       "author": "whyrusleeping",
-      "hash": "QmQgRCmDMVcbP42bVDgWRZbZnNHRRGSKmmjuU35oKEC7D1",
+      "hash": "QmQvbWzZPGpoppaAvBtj6QmyBZPw4ivFD7ryyHesxuYYDa",
       "name": "yamux",
       "version": "1.0.2"
     },
     {
       "author": "whyrusleeping",
-      "hash": "Qmb1US8uyZeEpMyc56wVZy2cDFdQjNFojAUYVCoo9ieTqp",
+      "hash": "QmeZBgYBHvxMukGK5ojg28BCNLB9SeXqT7XXg6o7r2GbJy",
       "name": "go-stream-muxer",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ],
   "gxVersion": "0.7.0",
@@ -26,3 +26,4 @@
   "name": "go-smux-yamux",
   "version": "1.1.2"
 }
+
