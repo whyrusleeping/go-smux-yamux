@@ -5,41 +5,9 @@ import (
 	"net"
 	"time"
 
-	yamux "github.com/hashicorp/yamux"
 	smux "github.com/jbenet/go-stream-muxer"
+	yamux "github.com/whyrusleeping/yamux"
 )
-
-// stream implements smux.Stream using a ss.Stream
-// TODO: do we actually need a wrapper here?
-type stream yamux.Stream
-
-func (s *stream) yamuxStream() *yamux.Stream {
-	return (*yamux.Stream)(s)
-}
-
-func (s *stream) Read(buf []byte) (int, error) {
-	return s.yamuxStream().Read(buf)
-}
-
-func (s *stream) Write(buf []byte) (int, error) {
-	return s.yamuxStream().Write(buf)
-}
-
-func (s *stream) Close() error {
-	return s.yamuxStream().Close()
-}
-
-func (s *stream) SetDeadline(t time.Time) error {
-	return s.yamuxStream().SetDeadline(t)
-}
-
-func (s *stream) SetReadDeadline(t time.Time) error {
-	return s.yamuxStream().SetReadDeadline(t)
-}
-
-func (s *stream) SetWriteDeadline(t time.Time) error {
-	return s.yamuxStream().SetWriteDeadline(t)
-}
 
 // Conn is a connection to a remote peer.
 type conn yamux.Session
@@ -63,13 +31,13 @@ func (c *conn) OpenStream() (smux.Stream, error) {
 		return nil, err
 	}
 
-	return (*stream)(s), nil
+	return s, nil
 }
 
 // AcceptStream accepts a stream opened by the other side.
 func (c *conn) AcceptStream() (smux.Stream, error) {
 	s, err := c.yamuxSession().AcceptStream()
-	return (*stream)(s), err
+	return s, err
 }
 
 // Serve starts listening for incoming requests and handles them
