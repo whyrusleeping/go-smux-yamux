@@ -40,18 +40,6 @@ func (c *conn) AcceptStream() (smux.Stream, error) {
 	return s, err
 }
 
-// Serve starts listening for incoming requests and handles them
-// using given StreamHandler
-func (c *conn) Serve(handler smux.StreamHandler) {
-	for { // accept loop
-		s, err := c.AcceptStream()
-		if err != nil {
-			return // err always means closed.
-		}
-		go handler(s)
-	}
-}
-
 // Transport is a go-peerstream transport that constructs
 // yamux-backed connections.
 type Transport yamux.Config
