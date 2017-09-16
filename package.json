@@ -9,9 +9,9 @@
   "gxDependencies": [
     {
       "author": "whyrusleeping",
-      "hash": "QmeqBLid3Nda8uqojQvXe5rQ5A4eG8mpZrCGqUqpS8U5g2",
+      "hash": "QmVxf27kucSvCLiCq6dAXjDU2WG3xZN9ae7Ny6osroP28u",
       "name": "yamux",
-      "version": "1.0.4"
+      "version": "1.0.5"
     },
     {
       "author": "whyrusleeping",
@@ -24,6 +24,6 @@
   "language": "go",
   "license": "",
   "name": "go-smux-yamux",
-  "version": "2.0.0"
+  "version": "2.0.1"
 }
 
