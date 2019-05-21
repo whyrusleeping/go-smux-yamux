@@ -44,20 +44,20 @@ func (c *conn) AcceptStream() (smux.Stream, error) {
 // yamux-backed connections.
 type Transport yamux.Config
 
-// DefaultTransport has default settings for yamux
-var DefaultTransport = (*Transport)(&yamux.Config{
-	AcceptBacklog:          256,              // from yamux.DefaultConfig
-	EnableKeepAlive:        true,             // from yamux.DefaultConfig
-	KeepAliveInterval:      30 * time.Second, // from yamux.DefaultConfig
-	ConnectionWriteTimeout: 10 * time.Second, // from yamux.DefaultConfig
+var DefaultTransport *Transport
+
+func init() {
+	config := yamux.DefaultConfig()
 	// We've bumped this to 16MiB as this critically limits throughput.
 	//
 	// 1MiB means a best case of 10MiB/s (83.89Mbps) on a connection with
 	// 100ms latency. The default gave us 2.4MiB *best case* which was
 	// totally unacceptable.
-	MaxStreamWindowSize: uint32(16 * 1024 * 1024),
-	LogOutput:           ioutil.Discard,
-})
+	config.MaxStreamWindowSize = uint32(16 * 1024 * 1024)
+	// don't spam
+	config.LogOutput = ioutil.Discard
+	DefaultTransport = (*Transport)(config)
+}
 
 func (t *Transport) NewConn(nc net.Conn, isServer bool) (smux.Conn, error) {
 	var s *yamux.Session
