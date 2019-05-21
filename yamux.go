@@ -3,7 +3,6 @@ package sm_yamux
 import (
 	"io/ioutil"
 	"net"
-	"time"
 
 	smux "github.com/libp2p/go-stream-muxer"
 	yamux "github.com/whyrusleeping/yamux"
